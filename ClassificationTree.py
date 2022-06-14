@@ -117,7 +117,10 @@ class ClassificationTree:
         current = self.root
         while type(current) is not Leaf:
             if type(sample[current.split]) is str:
-                current = current.splitdict[sample[current.split]]       
+                try:
+                    current = current.splitdict[sample[current.split]]
+                except:
+                    current = Leaf(current.outputs)       
             else:
                 if sample[current.split] > current.cutoff:
                     current = current.right
