@@ -135,15 +135,6 @@ class ClassificationTree:
                 correct += 1
         return correct / len(testdata)
 
-
-
-"""trainingdata = pd.read_csv(r"C:/Users/dsm84762/Desktop/Python Code/knntestdata/KNNAlgorithmDataset.csv", nrows = 500, usecols= range(2,32)).to_numpy()
-trainingoutput = pd.read_csv(r"C:/Users/dsm84762/Desktop/Python Code/knntestdata/KNNAlgorithmDataset.csv", nrows = 500, usecols = [1] ).to_numpy()
-trainingoutput = np.array([x for xs in trainingoutput for x in xs])
-
-testdata = pd.read_csv(r"C:/Users/dsm84762/Desktop/Python Code/knntestdata/KNNAlgorithmDataset.csv", skiprows = 500, usecols= range(2,32)).to_numpy()
-testoutput = pd.read_csv(r"C:/Users/dsm84762/Desktop/Python Code/knntestdata/KNNAlgorithmDataset.csv", skiprows = 500, usecols = [1] ).to_numpy()
-"""
 # Extract example dataset from GitHub repository
 Example_TO = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', nrows = 400, usecols = [6]).to_numpy()
 Example_TO = np.array([item for sublist in Example_TO for item in sublist])
