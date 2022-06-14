@@ -1,7 +1,9 @@
 import numpy as np
 def knn(m, data, labels, x):
-    distances = []
     for i in data:
         pass
 def euclidian_distance(vec1, vec2):
+    pass
+
+def elbow_detection():
     pass
