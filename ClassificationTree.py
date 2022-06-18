@@ -62,7 +62,6 @@ class Node:
             # varied amount of categories a sample can be classified as. the name of the class is the key, and the
             # Node/Leaf it leads to is the value.
             self.split_dict = {}
-            h = set(data[:, self.split])
             for i in set(data[:, self.split]):
                 # We only need a new node if the entropy the split is > 1
                 if entropy(outputs[np.where(data[:, self.split] == i)]) > 1 and len(vars) > 1:
@@ -146,14 +145,16 @@ class ClassificationTree:
                 correct += 1
         return correct / len(testdata)
 
-# Extract example dataset from GitHub repository
-Example_TO = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', nrows = 400, usecols = [6]).to_numpy()
-Example_TO = np.array([item for sublist in Example_TO for item in sublist])
-Example_TD = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', nrows = 400, usecols = range(6)).to_numpy()
 
-Example_TrO = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', skiprows = 400, usecols = [6]).to_numpy()
-Example_TrO = np.array([item for sublist in Example_TrO for item in sublist])
-Example_TrD = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', skiprows = 400, usecols = range(6)).to_numpy()
+if __name__ == '__main__':
+    # Extract example dataset from GitHub repository
+    Example_TO = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', nrows = 400, usecols = [6]).to_numpy()
+    Example_TO = np.array([item for sublist in Example_TO for item in sublist])
+    Example_TD = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', nrows = 400, usecols = range(6)).to_numpy()
 
-Example_Tree = ClassificationTree(Example_TrD, Example_TrO)
-print(Example_Tree.find_accuracy(Example_TD, Example_TO))
+    Example_TrO = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', skiprows = 400, usecols = [6]).to_numpy()
+    Example_TrO = np.array([item for sublist in Example_TrO for item in sublist])
+    Example_TrD = pd.read_csv('https://raw.githubusercontent.com/desmondharris/MachineLearningPractice/main/Datasets/car_evaluation.csv', skiprows = 400, usecols = range(6)).to_numpy()
+
+    Example_Tree = ClassificationTree(Example_TrD, Example_TrO)
+    print(Example_Tree.find_accuracy(Example_TD, Example_TO))
